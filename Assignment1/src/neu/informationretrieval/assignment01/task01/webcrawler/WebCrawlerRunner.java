@@ -1,11 +1,12 @@
-package neu.informationretrieval.assignment01.webcrawler;
+package neu.informationretrieval.assignment01.task01.webcrawler;
 
 
 /**
  * 
  * @author shruti
  * This class simply calls the WebCrawler Class.
- * User is free to provide any seed to WebCrawler class using this class.
+ * User is free to provide any seed to WebCrawler 
+ * class using this class.
  */
 public class WebCrawlerRunner {
 
@@ -14,8 +15,8 @@ public class WebCrawlerRunner {
 		
 		// The seed can be any URL
 		String seed="http://en.wikipedia.org/wiki/Sustainable_energy";
-		WebCrawler webCrawler=new WebCrawler(seed);
-		webCrawler.crawl();
+		WebCrawler webCrawler=new WebCrawler();
+		webCrawler.crawl(seed);
 		
 	}
 

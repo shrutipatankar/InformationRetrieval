@@ -1,12 +1,19 @@
-package neu.informationretrieval.assignment01.webcrawler;
+package neu.informationretrieval.assignment01.task01.webcrawler;
 
 import org.jsoup.select.Elements;
 
+/**
+ * 
+ * @author shruti
+ * This class represents a WebPage in terms of
+ * 1. HTML content of the web page
+ * 2. URL links on the Web Page
+ */
 public class WebPage {
 	String html;
 	Elements links;
 
-	WebPage() {
+	public WebPage() {
 		html = "";
 	}
 
@@ -25,5 +32,4 @@ public class WebPage {
 	public void setLinks(Elements links) {
 		this.links = links;
 	}
-
 }
