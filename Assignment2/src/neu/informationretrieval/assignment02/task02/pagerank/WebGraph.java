@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.security.AllPermission;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -39,17 +39,16 @@ public class WebGraph {
 	private BufferedReader bufferedReader;
 	private FileReader fileReader;
 	private Map<String,Set<String>> adjacencyList;
-	private Set<GraphNode> pages;
-	private Set<GraphNode> sinkNodePages;
-	
-	
+	private Map<String, GraphNode> pages;
+	private Set<String> sinkNodePages;
+	 
 	WebGraph(){
 		try {
 			fileReader = new FileReader("Input/WG1.txt");
 			bufferedReader = new BufferedReader(fileReader);
 			adjacencyList = new HashMap<String, Set<String>>();
-			pages = new HashSet<GraphNode>();
-			sinkNodePages = new HashSet<GraphNode>();
+			pages = new HashMap<String,GraphNode>();
+			sinkNodePages = new HashSet<String>();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,7 +60,7 @@ public class WebGraph {
 		printAdjacencyList();
 		buildPagesSet();
 		printAllPages();
-		PageRank pageRank = new PageRank(pages);
+		PageRank pageRank = new PageRank(pages,sinkNodePages);
 		pageRank.calculatePageRank();
 	}
 	
@@ -99,19 +98,19 @@ public class WebGraph {
 			node.setNumberOfOutgoingEdges(outlinks);
 			node.setSinkNode((outlinks == 0));
 			if(node.isSinkNode()){
-				sinkNodePages.add(node);
+				sinkNodePages.add(node.getName());
 			}
-			pages.add(node);
+			pages.put(node.getName(),node);
 		}
 	}
 	
 	public void printAllPages(){
-		for(GraphNode node : pages){
+		for (Map.Entry<String, GraphNode> entry : pages.entrySet()) {
 			System.out.println("--------------------------------------------------");
-			System.out.println("Name: " + node.getName());
-			System.out.println("Incoming Pages: " + node.getIncomingGraphNodes().toString());
-			System.out.println("Number of Outgoing links: " + node.getNumberOfOutgoingEdges());
-			System.out.println("Is this a sink node? " + node.isSinkNode());
+			System.out.println("Name: " + entry.getValue().getName());
+			System.out.println("Incoming Pages: " + entry.getValue().getIncomingGraphNodes());
+			System.out.println("Number of Outgoing links: " + entry.getValue().getNumberOfOutgoingEdges());
+			System.out.println("Is this a sink node? " + entry.getValue().isSinkNode());
 			System.out.println("--------------------------------------------------");
 		}
 	}
