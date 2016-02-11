@@ -1,7 +1,7 @@
 package neu.informationretrieval.assignment02.task02.pagerank;
 
-import java.text.DecimalFormat;
-import java.text.ParseException;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -33,50 +33,61 @@ public class PageRank {
 
 	public void calculatePageRank() {
 		// set the page rank for all the pages
+		System.out.println("Starting to calculate page rank");
 		setInitialPageRank();
+		
+		try {
+			PrintWriter pw = new PrintWriter("Output/PageRank.txt");
+			int count = 0;
+			while ((!isConverged(count))) {
 
-		int count = 0;
-		while ((!isConverged(count))) {
-			// logs
-			System.out.println("Loop number: " + count);
-			count = count + 1;
-			System.out.println("Not Converged");
+				// logs
+				System.out.println("Loop number: " + count);
+				count = count + 1;
+				System.out.println("Not Converged");
 
-			/* calculate total sink PR */
-			double sinkPageRank = 0.0;
-			for (String sinkNode : sinkNodes) {
-				sinkPageRank = sinkPageRank
-						+ allPages.get(sinkNode).getPageRank();
-			}
-			System.out.println("Calculated Sink Page Rank = " + sinkPageRank);
-
-			/* Main Page Rank Calulation Loop */
-			for (Map.Entry<String, GraphNode> entry : allPages.entrySet()) {
-				System.out.println("Calculating Page Rank for Page: "
-						+ entry.getKey());
-				double newPageRank = (double) (1 - teleportationFactor)
-						/ (double) allPages.size();
-				System.out.println("PageRank after first modification: "
-						+ newPageRank);
-				newPageRank += (double) teleportationFactor
-						* (sinkPageRank / (double) allPages.size());
-				System.out.println("PageRank after second modification: "
-						+ newPageRank);
-
-				for (String incomingLinks : entry.getValue()
-						.getIncomingGraphNodes()) {
-					newPageRank += (double) teleportationFactor
-							* allPages.get(incomingLinks).getPageRank()
-							/ (double) allPages.get(incomingLinks)
-									.getNumberOfOutgoingEdges();
+				// calculate total sink PR 
+				double sinkPageRank = 0.0;
+				for (String sinkNode : sinkNodes) {
+					sinkPageRank = sinkPageRank
+							+ allPages.get(sinkNode).getPageRank();
 				}
-				System.out.println("PageRank after third(final) modification: "
-						+ newPageRank);
-				entry.getValue().setPageRank(newPageRank);
+				System.out.println("Calculated Sink Page Rank = "
+						+ sinkPageRank);
+
+				//Main Page Rank Calulation Loop
+				for (Map.Entry<String, GraphNode> entry : allPages.entrySet()) {
+					System.out.println("Calculating Page Rank for Page: "
+							+ entry.getKey());
+					double newPageRank = (double) (1 - teleportationFactor)
+							/ (double) allPages.size();
+
+					newPageRank += (double) teleportationFactor
+							* (sinkPageRank / (double) allPages.size());
+
+					for (String incomingLinks : entry.getValue()
+							.getIncomingGraphNodes()) {
+						newPageRank += (double) teleportationFactor
+								* allPages.get(incomingLinks).getPageRank()
+								/ (double) allPages.get(incomingLinks)
+										.getNumberOfOutgoingEdges();
+					}
+					System.out.println("PageRank after final modification: "
+							+ newPageRank);
+					entry.getValue().setPageRank(newPageRank);
+				}
 			}
-		}
-		if (isConverged(count)) {
-			System.out.println("Converged!");
+			if (isConverged(count)) {
+				System.out.println("Converged! after " + count + " loops");
+				for (Map.Entry<String, GraphNode> entry : allPages.entrySet()) {
+					pw.write(entry.getKey().toString() + " "
+							+ entry.getValue().getPageRank()+"\n");
+				}
+				pw.close();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -97,8 +108,8 @@ public class PageRank {
 	}
 
 	private double calculatePerplexityDifference(int loopNumber) {
-		return (perplexityVector.get(perplexityVector.size() - 1) - perplexityVector
-				.get(perplexityVector.size() - 2));
+		return (Math.abs(perplexityVector.get(perplexityVector.size() - 1) - perplexityVector
+				.get(perplexityVector.size() - 2)));
 	}
 
 	private void calculatePerplexity() {
@@ -120,19 +131,11 @@ public class PageRank {
 	}
 
 	private void setInitialPageRank() {
-		DecimalFormat df = new DecimalFormat("0.00");
 		double initialPageRank = (double) 1 / (double) allPages.size();
-		String formate = df.format(initialPageRank);
-		try {
-			initialPageRank = (Double) df.parse(formate);
-			System.out.println("Setting initial page rank to "
-					+ initialPageRank);
-			for (Map.Entry<String, GraphNode> entry : allPages.entrySet()) {
-				entry.getValue().setPageRank(initialPageRank);
-			}
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		System.out.println("Setting initial page rank to " + initialPageRank);
+		for (Map.Entry<String, GraphNode> entry : allPages.entrySet()) {
+			entry.getValue().setPageRank(initialPageRank);
 		}
+
 	}
 }

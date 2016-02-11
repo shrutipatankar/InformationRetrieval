@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -44,7 +43,7 @@ public class WebGraph {
 	 
 	WebGraph(){
 		try {
-			fileReader = new FileReader("Input/WG1.txt");
+			fileReader = new FileReader("Input/WG2.txt");
 			bufferedReader = new BufferedReader(fileReader);
 			adjacencyList = new HashMap<String, Set<String>>();
 			pages = new HashMap<String,GraphNode>();

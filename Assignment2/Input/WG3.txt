@@ -3,4 +3,6 @@ B A F
 C A B D
 D B C
 E B C D F
-F A B D
+F A B C D
+G A C
+H C F
