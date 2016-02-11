@@ -32,4 +32,5 @@ public class WebPage {
 	public void setLinks(Elements links) {
 		this.links = links;
 	}
+	
 }

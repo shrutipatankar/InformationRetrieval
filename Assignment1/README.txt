@@ -20,6 +20,7 @@ PROGRAM IMPLEMENTATION OF Task 1
 
 
 FOR RUNNING THIS FIRST PART OF THE PROBLEM STATEMENT i.e (Task 1):
+OPEN THE PROJECT IN A IDE (FOR EXAMPLE: ECLIPSE)
 1. GO TO PROJECT : Assignment1/src/
 2. OPEN PACKAGE  : neu.informationretrieval.assignment01.task01.webcrawler
 3. GO TO CLASS   : WebCrawlerRunner
@@ -53,6 +54,7 @@ PROGRAM IMPLEMENTATION OF Task 2
 
 FOR RUNNING THIS SECOND PART OF THE PROBLEM STATEMENT i.e (Task 2A BFS):
 
+OPEN THE PROJECT IN A IDE (FOR EXAMPLE: ECLIPSE)
 1. GO TO PROJECT : Assignment1/src/
 2. OPEN PACKAGE  : neu.informationretrieval.assignment01.task02.focusedwebcrawler;
 3. GO TO CLASS   : FocusedWebCrawlerRunner
@@ -68,6 +70,7 @@ B. DownloadedContent/RawHTML_FocusedWebCrawler_2A : HTML content of all the visi
 
 FOR RUNNING THIS SECOND PART OF THE PROBLEM STATEMENT i.e (Task 2B DFS):
 
+OPEN THE PROJECT IN A IDE (FOR EXAMPLE: ECLIPSE)
 1. GO TO PROJECT : Assignment1/src/
 2. OPEN PACKAGE  : neu.informationretrieval.assignment01.task02.focusedwebcrawler;
 3. GO TO CLASS   : FocusedWebCrawlerRunner

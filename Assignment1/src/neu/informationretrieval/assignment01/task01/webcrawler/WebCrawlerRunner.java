@@ -14,7 +14,7 @@ public class WebCrawlerRunner {
 		// TODO Auto-generated method stub
 		
 		// The seed can be any URL
-		String seed="http://en.wikipedia.org/wiki/Sustainable_energy";
+		String seed="https://en.wikipedia.org/wiki/Sustainable_energy";
 		WebCrawler webCrawler=new WebCrawler();
 		webCrawler.crawl(seed);
 		

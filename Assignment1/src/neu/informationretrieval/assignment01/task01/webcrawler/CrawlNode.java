@@ -22,6 +22,7 @@ import java.util.Set;
 public class CrawlNode {
 
 	private String url;
+
 	private int depth;
 	private Set<CrawlNode> children;
 
@@ -53,5 +54,4 @@ public class CrawlNode {
 	public void setChildren(Set<CrawlNode> children) {
 		this.children = children;
 	}
-
 }

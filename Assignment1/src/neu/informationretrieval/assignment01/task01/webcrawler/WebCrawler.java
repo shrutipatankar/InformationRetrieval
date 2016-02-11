@@ -3,9 +3,12 @@ package neu.informationretrieval.assignment01.task01.webcrawler;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -30,6 +33,7 @@ public class WebCrawler {
 	private String downloadPath;
 	private long startTime;
 	private long endTime;
+	private Map<String,Set<String>> adjacencyList;
 
 	/*
 	 * These filters ensure : 
@@ -58,6 +62,7 @@ public class WebCrawler {
 		visitedWebPages = new LinkedHashSet<String>();
 		pagesToVisit = new ArrayList<CrawlNode>();
 		webCrawlerThread = new WebCrawlerThread();
+		adjacencyList = new HashMap<String, Set<String>>();
 	}
 
 	/**
@@ -76,6 +81,8 @@ public class WebCrawler {
 		endTime = System.currentTimeMillis();
 		System.out.println("Time taken by this program: "+((endTime - startTime)/60000)+ "mins");
 		logVisitedPages();
+		buildAdjacencyList(this.seed);
+		printAdjacencyList();
 	}
 
 	/**
@@ -178,6 +185,7 @@ public class WebCrawler {
 			children.add(child);
 		}
 		root.setChildren(children);
+		
 	}
 
 	/**
@@ -260,4 +268,64 @@ public class WebCrawler {
 		return filename;
 
 	}
+	
+	private void printAdjacencyList(){
+		try {
+			PrintWriter pw = new PrintWriter("WG1.txt");
+			for (Entry<String, Set<String>> entry : adjacencyList.entrySet()) {
+				pw.write("Key: " + entry.getKey() + "\t");
+				for (String listNode : entry.getValue()) {
+					pw.write(listNode + "\t");
+				}
+				pw.write("\n");
+			}
+			pw.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+	}
+	
+	private void buildAdjacencyList(CrawlNode root) {
+		try {
+			//PrintWriter pw = new PrintWriter("log.txt");
+			// We start from the root node
+			if (root.getChildren() != null) {
+				System.out.println("Root node: " + root.getUrl());
+				System.out.println("Num of child nodes: "
+						+ root.getChildren().size());
+				for (CrawlNode child : root.getChildren()) {
+					if (visitedWebPages.contains(child.getUrl())
+							&& (!child.getUrl().equals(root.getUrl()))) {
+						if (adjacencyList
+								.containsKey(createFileNameFromUrl(child
+										.getUrl()))) {
+							Set<String> tempArrayList = adjacencyList
+									.get(createFileNameFromUrl(child.getUrl()));
+							tempArrayList.add(createFileNameFromUrl(root
+									.getUrl()));
+							adjacencyList.put(
+									createFileNameFromUrl(child.getUrl()),
+									tempArrayList);
+						} else {
+							Set<String> childArrayList = new HashSet<String>();
+							childArrayList.add(createFileNameFromUrl(root
+									.getUrl()));
+
+							adjacencyList.put(
+									createFileNameFromUrl(child.getUrl()),
+									childArrayList);
+						}
+					}
+					//pw.close();
+					buildAdjacencyList(child);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+	}
+	
+	
 }
