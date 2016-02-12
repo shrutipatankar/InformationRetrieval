@@ -1,5 +1,6 @@
 package neu.informationretrieval.assignment02.task02.pagerank;
 
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -9,8 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class PageRank {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+public class PageRank {
+	final static Logger logger = LoggerFactory.getLogger(PageRank.class);
 	private Map<String, GraphNode> allPages;
 	private Set<String> sinkNodes;
 	private double teleportationFactor;
@@ -33,7 +37,7 @@ public class PageRank {
 
 	public void calculatePageRank() {
 		// set the page rank for all the pages
-		System.out.println("Starting to calculate page rank");
+		logger.info("Starting to calculate page rank");
 		setInitialPageRank();
 		
 		try {
@@ -42,9 +46,9 @@ public class PageRank {
 			while ((!isConverged(count))) {
 
 				// logs
-				System.out.println("Loop number: " + count);
+				logger.info("Loop number: " + count);
 				count = count + 1;
-				System.out.println("Not Converged");
+				logger.info("Not Converged");
 
 				// calculate total sink PR 
 				double sinkPageRank = 0.0;
@@ -52,12 +56,12 @@ public class PageRank {
 					sinkPageRank = sinkPageRank
 							+ allPages.get(sinkNode).getPageRank();
 				}
-				System.out.println("Calculated Sink Page Rank = "
+				logger.info("Calculated Sink Page Rank = "
 						+ sinkPageRank);
 
 				//Main Page Rank Calulation Loop
 				for (Map.Entry<String, GraphNode> entry : allPages.entrySet()) {
-					System.out.println("Calculating Page Rank for Page: "
+					logger.info("Calculating Page Rank for Page: "
 							+ entry.getKey());
 					double newPageRank = (double) (1 - teleportationFactor)
 							/ (double) allPages.size();
@@ -72,19 +76,19 @@ public class PageRank {
 								/ (double) allPages.get(incomingLinks)
 										.getNumberOfOutgoingEdges();
 					}
-					System.out.println("PageRank after final modification: "
+					logger.info("PageRank after final modification: "
 							+ newPageRank);
 					entry.getValue().setPageRank(newPageRank);
 				}
 			}
-			if (isConverged(count)) {
-				System.out.println("Converged! after " + count + " loops");
-				for (Map.Entry<String, GraphNode> entry : allPages.entrySet()) {
-					pw.write(entry.getKey().toString() + " "
-							+ entry.getValue().getPageRank()+"\n");
-				}
-				pw.close();
+
+			logger.info("Converged! after " + count + " loops");
+			for (Map.Entry<String, GraphNode> entry : allPages.entrySet()) {
+				pw.write(entry.getKey().toString() + " "
+						+ entry.getValue().getPageRank() + "\n");
 			}
+			pw.close();
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,11 +100,13 @@ public class PageRank {
 		boolean converged = true;
 		if (loopNumber <= 4) {
 			calculatePerplexity();
-			System.out.println(perplexityVector.toString());
+			logger.info(perplexityVector.toString());
 			return false;
 		} else {
 			calculatePerplexity();
+			logger.info(perplexityVector.toString());
 			for (int i = loopNumber; i >= (loopNumber - 5); i--) {
+				logger.info("Perplexity difference for loop i= "+i+" is "+calculatePerplexityDifference(i));
 				converged = converged && (calculatePerplexityDifference(i) < 1);
 			}
 		}
@@ -113,6 +119,8 @@ public class PageRank {
 	}
 
 	private void calculatePerplexity() {
+		logger.info("Summation Value:"+getSummationOfEntropy());
+		logger.info("Summation Value raised to power 2:" + Math.pow(2, getSummationOfEntropy()));
 		perplexityVector.add(Math.pow(2, getSummationOfEntropy()));
 	}
 
@@ -123,16 +131,18 @@ public class PageRank {
 					+ calculateIndividualEntropy(entry.getValue().getPageRank());
 		}
 		entropy = -(entropy);
+		logger.info("Entropy"+entropy);
 		return entropy;
 	}
 
 	private double calculateIndividualEntropy(double pageRank) {
+		logger.info("Individual Entropy"+pageRank * (Math.log(pageRank) / Math.log(2)));
 		return (pageRank * (Math.log(pageRank) / Math.log(2)));
 	}
 
 	private void setInitialPageRank() {
 		double initialPageRank = (double) 1 / (double) allPages.size();
-		System.out.println("Setting initial page rank to " + initialPageRank);
+		logger.info("Setting initial page rank to " + initialPageRank);
 		for (Map.Entry<String, GraphNode> entry : allPages.entrySet()) {
 			entry.getValue().setPageRank(initialPageRank);
 		}

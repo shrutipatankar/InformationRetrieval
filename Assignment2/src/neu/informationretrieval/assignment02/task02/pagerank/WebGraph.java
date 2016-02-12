@@ -9,6 +9,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * @author shruti
@@ -34,7 +37,7 @@ import java.util.Set;
  * 4. number of outgoing links for every node
  */
 public class WebGraph {
-	
+	final static Logger logger = LoggerFactory.getLogger(WebGraph.class);
 	private BufferedReader bufferedReader;
 	private FileReader fileReader;
 	private Map<String,Set<String>> adjacencyList;
@@ -43,7 +46,7 @@ public class WebGraph {
 	 
 	WebGraph(){
 		try {
-			fileReader = new FileReader("Input/WG2.txt");
+			fileReader = new FileReader("Input/WG1.txt");
 			bufferedReader = new BufferedReader(fileReader);
 			adjacencyList = new HashMap<String, Set<String>>();
 			pages = new HashMap<String,GraphNode>();
@@ -84,7 +87,7 @@ public class WebGraph {
 	
 	public void printAdjacencyList() {
 		for (Map.Entry<String, Set<String>> entry : adjacencyList.entrySet()) {
-			System.out.println(entry.getKey() + " : " + entry.getValue().toString());
+			logger.info(entry.getKey() + " : " + entry.getValue().toString());
 		}
 	}
 	
@@ -105,12 +108,12 @@ public class WebGraph {
 	
 	public void printAllPages(){
 		for (Map.Entry<String, GraphNode> entry : pages.entrySet()) {
-			System.out.println("--------------------------------------------------");
-			System.out.println("Name: " + entry.getValue().getName());
-			System.out.println("Incoming Pages: " + entry.getValue().getIncomingGraphNodes());
-			System.out.println("Number of Outgoing links: " + entry.getValue().getNumberOfOutgoingEdges());
-			System.out.println("Is this a sink node? " + entry.getValue().isSinkNode());
-			System.out.println("--------------------------------------------------");
+			logger.info("--------------------------------------------------");
+			logger.info("Name: " + entry.getValue().getName());
+			logger.info("Incoming Pages: " + entry.getValue().getIncomingGraphNodes());
+			logger.info("Number of Outgoing links: " + entry.getValue().getNumberOfOutgoingEdges());
+			logger.info("Is this a sink node? " + entry.getValue().isSinkNode());
+			logger.info("--------------------------------------------------");
 		}
 	}
 	

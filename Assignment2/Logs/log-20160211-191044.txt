@@ -1,0 +1,300 @@
+521  [main] INFO  n.i.a.task02.pagerank.WebGraph - D : [B, C]
+524  [main] INFO  n.i.a.task02.pagerank.WebGraph - E : [D, F, B, C]
+524  [main] INFO  n.i.a.task02.pagerank.WebGraph - F : [D, A, B]
+525  [main] INFO  n.i.a.task02.pagerank.WebGraph - A : [D, E, F]
+525  [main] INFO  n.i.a.task02.pagerank.WebGraph - B : [F, A]
+525  [main] INFO  n.i.a.task02.pagerank.WebGraph - C : [D, A, B]
+526  [main] INFO  n.i.a.task02.pagerank.WebGraph - --------------------------------------------------
+526  [main] INFO  n.i.a.task02.pagerank.WebGraph - Name: D
+526  [main] INFO  n.i.a.task02.pagerank.WebGraph - Incoming Pages: [B, C]
+526  [main] INFO  n.i.a.task02.pagerank.WebGraph - Number of Outgoing links: 4
+526  [main] INFO  n.i.a.task02.pagerank.WebGraph - Is this a sink node? false
+526  [main] INFO  n.i.a.task02.pagerank.WebGraph - --------------------------------------------------
+526  [main] INFO  n.i.a.task02.pagerank.WebGraph - --------------------------------------------------
+526  [main] INFO  n.i.a.task02.pagerank.WebGraph - Name: E
+526  [main] INFO  n.i.a.task02.pagerank.WebGraph - Incoming Pages: [D, F, B, C]
+527  [main] INFO  n.i.a.task02.pagerank.WebGraph - Number of Outgoing links: 1
+527  [main] INFO  n.i.a.task02.pagerank.WebGraph - Is this a sink node? false
+527  [main] INFO  n.i.a.task02.pagerank.WebGraph - --------------------------------------------------
+527  [main] INFO  n.i.a.task02.pagerank.WebGraph - --------------------------------------------------
+527  [main] INFO  n.i.a.task02.pagerank.WebGraph - Name: F
+527  [main] INFO  n.i.a.task02.pagerank.WebGraph - Incoming Pages: [D, A, B]
+527  [main] INFO  n.i.a.task02.pagerank.WebGraph - Number of Outgoing links: 3
+527  [main] INFO  n.i.a.task02.pagerank.WebGraph - Is this a sink node? false
+527  [main] INFO  n.i.a.task02.pagerank.WebGraph - --------------------------------------------------
+527  [main] INFO  n.i.a.task02.pagerank.WebGraph - --------------------------------------------------
+528  [main] INFO  n.i.a.task02.pagerank.WebGraph - Name: A
+528  [main] INFO  n.i.a.task02.pagerank.WebGraph - Incoming Pages: [D, E, F]
+528  [main] INFO  n.i.a.task02.pagerank.WebGraph - Number of Outgoing links: 3
+528  [main] INFO  n.i.a.task02.pagerank.WebGraph - Is this a sink node? false
+528  [main] INFO  n.i.a.task02.pagerank.WebGraph - --------------------------------------------------
+528  [main] INFO  n.i.a.task02.pagerank.WebGraph - --------------------------------------------------
+528  [main] INFO  n.i.a.task02.pagerank.WebGraph - Name: B
+528  [main] INFO  n.i.a.task02.pagerank.WebGraph - Incoming Pages: [F, A]
+528  [main] INFO  n.i.a.task02.pagerank.WebGraph - Number of Outgoing links: 4
+529  [main] INFO  n.i.a.task02.pagerank.WebGraph - Is this a sink node? false
+529  [main] INFO  n.i.a.task02.pagerank.WebGraph - --------------------------------------------------
+529  [main] INFO  n.i.a.task02.pagerank.WebGraph - --------------------------------------------------
+529  [main] INFO  n.i.a.task02.pagerank.WebGraph - Name: C
+529  [main] INFO  n.i.a.task02.pagerank.WebGraph - Incoming Pages: [D, A, B]
+529  [main] INFO  n.i.a.task02.pagerank.WebGraph - Number of Outgoing links: 2
+529  [main] INFO  n.i.a.task02.pagerank.WebGraph - Is this a sink node? false
+529  [main] INFO  n.i.a.task02.pagerank.WebGraph - --------------------------------------------------
+530  [main] INFO  n.i.a.task02.pagerank.PageRank - Starting to calculate page rank
+531  [main] INFO  n.i.a.task02.pagerank.PageRank - Setting initial page rank to 0.16666666666666666
+531  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+532  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+532  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+532  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+532  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+532  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+532  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.584962500721156
+532  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value:2.584962500721156
+532  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+532  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+532  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+532  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+533  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+533  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+533  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.584962500721156
+533  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value raised to power 2:6.0
+533  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+533  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+533  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+533  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+533  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+533  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.430827083453526
+533  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.584962500721156
+534  [main] INFO  n.i.a.task02.pagerank.PageRank - [6.0]
+534  [main] INFO  n.i.a.task02.pagerank.PageRank - Loop number: 0
+534  [main] INFO  n.i.a.task02.pagerank.PageRank - Not Converged
+534  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculated Sink Page Rank = 0.0
+534  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: D
+534  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.13125
+534  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: E
+535  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.20636284722222223
+535  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: F
+535  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.1355295138888889
+535  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: A
+535  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.26669907407407406
+535  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: B
+535  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.13896476658950618
+535  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: C
+535  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.15798537555459105
+536  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3845114007142541
+536  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.46983554717756887
+536  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3907750985804051
+536  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5085191993625566
+536  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.39566172708774067
+536  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4205787260776253
+536  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.5698816990001507
+536  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value:2.5698816990001507
+536  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3845114007142541
+536  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.46983554717756887
+537  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3907750985804051
+537  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5085191993625566
+537  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.39566172708774067
+537  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4205787260776253
+537  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.5698816990001507
+537  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value raised to power 2:5.937607378721621
+537  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3845114007142541
+537  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.46983554717756887
+537  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3907750985804051
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5085191993625566
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.39566172708774067
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4205787260776253
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.5698816990001507
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - [6.0, 5.937607378721621]
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - Loop number: 1
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - Not Converged
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculated Sink Page Rank = 0.0
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: D
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.12167379751097127
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: E
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.18592950841723782
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: F
+538  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.15595043252567245
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: A
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.25308172000800744
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: B
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.14089244321787597
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: C
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.15250181349048214
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.36975566867207144
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.45128295999400997
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.41807824188281795
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5016901672056907
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.39834997536697436
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.41375292884823933
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.5529099419698036
+539  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value:2.5529099419698036
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.36975566867207144
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.45128295999400997
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.41807824188281795
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5016901672056907
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.39834997536697436
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.41375292884823933
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.5529099419698036
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value raised to power 2:5.868167053887459
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.36975566867207144
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.45128295999400997
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.41807824188281795
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5016901672056907
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.39834997536697436
+540  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.41375292884823933
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.5529099419698036
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - [6.0, 5.937607378721621, 5.868167053887459]
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - Loop number: 2
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - Not Converged
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculated Sink Page Rank = 0.0
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: D
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.11975291491725357
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: E
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.1893863652194438
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: F
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.15209362593931713
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: A
+541  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.25451909887258345
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: B
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.14020693869670514
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: C
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.15235521357353154
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3666675368657769
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.45464008006075346
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.41323357584853426
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5024599419243757
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3973983893851065
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4135665856485649
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.5479661097331117
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value:2.5479661097331117
+542  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3666675368657769
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.45464008006075346
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.41323357584853426
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5024599419243757
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3973983893851065
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4135665856485649
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.5479661097331117
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value raised to power 2:5.848092414781325
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3666675368657769
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.45464008006075346
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.41323357584853426
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5024599419243757
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3973983893851065
+543  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4135665856485649
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.5479661097331117
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - [6.0, 5.937607378721621, 5.868167053887459, 5.848092414781325]
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - Loop number: 3
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - Not Converged
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculated Sink Page Rank = 0.0
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: D
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.11954494024180075
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: E
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.18804143405932328
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: F
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.15231101895499782
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: A
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.25339330745572347
+544  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: B
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.13994955914970436
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: C
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.15193735156648316
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3663305293422392
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.45334486371704885
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4135103699413062
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5018580324531088
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3970398595982392
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.41303432371169024
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.545117978763632
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value:2.545117978763632
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3663305293422392
+545  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.45334486371704885
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4135103699413062
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5018580324531088
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3970398595982392
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.41303432371169024
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.545117978763632
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value raised to power 2:5.836558651644228
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3663305293422392
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.45334486371704885
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4135103699413062
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5018580324531088
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3970398595982392
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.41303432371169024
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.545117978763632
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - [6.0, 5.937607378721621, 5.868167053887459, 5.848092414781325, 5.836558651644228]
+546  [main] INFO  n.i.a.task02.pagerank.PageRank - Loop number: 4
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - Not Converged
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculated Sink Page Rank = 0.0
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: D
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.11931265573506752
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: E
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.18782138378268542
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: F
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.15188799110880233
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: A
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.2530370463731451
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: B
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.1397287606198851
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - Calculating Page Rank for Page: C
+547  [main] INFO  n.i.a.task02.pagerank.PageRank - PageRank after final modification: 0.1517401307811519
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.36595351241869234
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.453131629072525
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4129713402194647
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5016660542946791
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3967317430261356
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4127825332724863
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.543236812303983
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value:2.543236812303983
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.36595351241869234
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.453131629072525
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4129713402194647
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5016660542946791
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3967317430261356
+548  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4127825332724863
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.543236812303983
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value raised to power 2:5.828953175139499
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.36595351241869234
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.453131629072525
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4129713402194647
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5016660542946791
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3967317430261356
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4127825332724863
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.543236812303983
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - [6.0, 5.937607378721621, 5.868167053887459, 5.848092414781325, 5.836558651644228, 5.828953175139499]
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - Perplexity difference for loop i= 5 is 0.00760547650472887
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - Perplexity difference for loop i= 4 is 0.00760547650472887
+549  [main] INFO  n.i.a.task02.pagerank.PageRank - Perplexity difference for loop i= 3 is 0.00760547650472887
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Perplexity difference for loop i= 2 is 0.00760547650472887
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Perplexity difference for loop i= 1 is 0.00760547650472887
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Perplexity difference for loop i= 0 is 0.00760547650472887
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.36595351241869234
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.453131629072525
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4129713402194647
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5016660542946791
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3967317430261356
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4127825332724863
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.543236812303983
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value:2.543236812303983
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.36595351241869234
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.453131629072525
+550  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4129713402194647
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5016660542946791
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3967317430261356
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4127825332724863
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.543236812303983
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - Summation Value raised to power 2:5.828953175139499
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.36595351241869234
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.453131629072525
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4129713402194647
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.5016660542946791
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.3967317430261356
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - Individual Entropy-0.4127825332724863
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - Entropy2.543236812303983
+551  [main] INFO  n.i.a.task02.pagerank.PageRank - [6.0, 5.937607378721621, 5.868167053887459, 5.848092414781325, 5.836558651644228, 5.828953175139499, 5.828953175139499]
+552  [main] INFO  n.i.a.task02.pagerank.PageRank - Perplexity difference for loop i= 5 is 0.0
+552  [main] INFO  n.i.a.task02.pagerank.PageRank - Perplexity difference for loop i= 4 is 0.0
+552  [main] INFO  n.i.a.task02.pagerank.PageRank - Perplexity difference for loop i= 3 is 0.0
+552  [main] INFO  n.i.a.task02.pagerank.PageRank - Perplexity difference for loop i= 2 is 0.0
+552  [main] INFO  n.i.a.task02.pagerank.PageRank - Perplexity difference for loop i= 1 is 0.0
+552  [main] INFO  n.i.a.task02.pagerank.PageRank - Perplexity difference for loop i= 0 is 0.0
+552  [main] INFO  n.i.a.task02.pagerank.PageRank - Converged! after 5 loops
