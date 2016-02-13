@@ -4,8 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -43,14 +49,16 @@ public class WebGraph {
 	private Map<String,Set<String>> adjacencyList;
 	private Map<String, GraphNode> pages;
 	private Set<String> sinkNodePages;
+	private Set<String> sourceNodePages;
 	 
 	WebGraph(){
 		try {
-			fileReader = new FileReader("Input/WG1.txt");
+			fileReader = new FileReader("Input/WG2.txt");
 			bufferedReader = new BufferedReader(fileReader);
 			adjacencyList = new HashMap<String, Set<String>>();
 			pages = new HashMap<String,GraphNode>();
 			sinkNodePages = new HashSet<String>();
+			sourceNodePages = new HashSet<String>();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,9 +68,12 @@ public class WebGraph {
 	public void constructGraph(){
 		buildAdjacencyList();
 		printAdjacencyList();
+		printIncomingLinksData();
 		buildPagesSet();
 		printAllPages();
+		logger.info("Initializing Page rank");
 		PageRank pageRank = new PageRank(pages,sinkNodePages);
+		logger.info("Calculating Page rank");
 		pageRank.calculatePageRank();
 	}
 	
@@ -85,6 +96,86 @@ public class WebGraph {
 		}                
 	}
 	
+	private void printIncomingLinksData() {
+		try {
+			PrintWriter printWriter = new PrintWriter(
+					"Output/PagesSortedByIncomingLinks.txt");
+			Map<String, Integer> tempMap = new HashMap<String, Integer>();
+			for (Map.Entry<String, Set<String>> entry : adjacencyList
+					.entrySet()) {
+				tempMap.put(entry.getKey(), entry.getValue().size());
+			}
+			tempMap = sortByValue(tempMap);
+			logger.info("Printing sorted data:");
+			for (Map.Entry<String, Integer> entry : tempMap.entrySet()) {
+				logger.info(entry.getKey() + " " + entry.getValue());
+				printWriter.write(entry.getKey() + " " + entry.getValue()
+						+ "\n");
+			}
+			printWriter.close();
+			printGraphPlotData(tempMap);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void printGraphPlotData(Map<String, Integer> tempMap) {
+		try {
+			PrintWriter printWriter = new PrintWriter(
+					"Output/GraphPlotData.txt");
+			int incomingLinksCount[] = new int[tempMap.size()];
+
+			int tempCount = 0;
+			for (Map.Entry<String, Integer> entry : tempMap.entrySet()) {
+				incomingLinksCount[tempCount] = entry.getValue();
+				tempCount++;
+			}
+			int countPages = 0;
+			logger.info("Writing count info to LogGraphData.txt");
+			for (int i = 0; i < incomingLinksCount.length; i++) {
+				if (i != (incomingLinksCount.length - 1)) {
+					if (incomingLinksCount[i] == incomingLinksCount[i + 1]) {
+						countPages++;
+						logger.info("Count so far:" + countPages);
+					} else {
+						countPages++;
+						logger.info("Count so far:" + countPages);
+						printWriter.write(incomingLinksCount[i] + " "
+								+ countPages + "\n");
+						countPages = 0;
+					}
+				} else {
+					countPages++;
+					logger.info("Count so far:" + countPages);
+					printWriter.write(incomingLinksCount[i] + " " + countPages
+							+ "\n");
+				}
+			}
+			printWriter.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(
+			Map<K, V> map) {
+		List<Map.Entry<K, V>> list = new LinkedList<>(map.entrySet());
+		Collections.sort(list, new Comparator<Map.Entry<K, V>>() {
+			@Override
+			public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
+				return (o2.getValue()).compareTo(o1.getValue());
+			}
+		});
+
+		Map<K, V> result = new LinkedHashMap<>();
+		for (Map.Entry<K, V> entry : list) {
+			result.put(entry.getKey(), entry.getValue());
+		}
+		return result;
+	}
+	
 	public void printAdjacencyList() {
 		for (Map.Entry<String, Set<String>> entry : adjacencyList.entrySet()) {
 			logger.info(entry.getKey() + " : " + entry.getValue().toString());
@@ -92,18 +183,27 @@ public class WebGraph {
 	}
 	
 	public void buildPagesSet(){
+		logger.info("In build pages set");
 		for (Map.Entry<String, Set<String>> entry : adjacencyList.entrySet()) {
 			int outlinks = calculateOutGoingEdges(entry.getKey());
 			GraphNode node = new GraphNode();
 			node.setName(entry.getKey());
 			node.setIncomingGraphNodes(entry.getValue());
+			if(node.getIncomingGraphNodes().isEmpty()){
+				sourceNodePages.add(node.getName());
+			}
 			node.setNumberOfOutgoingEdges(outlinks);
 			node.setSinkNode((outlinks == 0));
+			logger.info("Adding a graph node for "+ node.getName());
 			if(node.isSinkNode()){
 				sinkNodePages.add(node.getName());
 			}
 			pages.put(node.getName(),node);
 		}
+		logger.info("Done with build pages set");
+		logger.info("Number of source nodes: "+sourceNodePages.size());
+		logger.info("Number of sink nodes: "+sinkNodePages.size());
+		
 	}
 	
 	public void printAllPages(){
