@@ -1,6 +1,7 @@
 package neu.informationretrieval.assignment02.task02.pagerank;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,7 +14,9 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,15 +53,17 @@ public class WebGraph {
 	private Map<String, GraphNode> pages;
 	private Set<String> sinkNodePages;
 	private Set<String> sourceNodePages;
+	private Map<String, Integer> outGoingLinks; 
 	 
 	WebGraph(){
 		try {
-			fileReader = new FileReader("Input/WG2.txt");
+			fileReader = new FileReader("Input/WG1.txt");
 			bufferedReader = new BufferedReader(fileReader);
 			adjacencyList = new HashMap<String, Set<String>>();
 			pages = new HashMap<String,GraphNode>();
 			sinkNodePages = new HashSet<String>();
 			sourceNodePages = new HashSet<String>();
+			outGoingLinks = new TreeMap<String, Integer>();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,6 +74,7 @@ public class WebGraph {
 		buildAdjacencyList();
 		printAdjacencyList();
 		printIncomingLinksData();
+		countPagesOccurances();
 		buildPagesSet();
 		printAllPages();
 		logger.info("Initializing Page rank");
@@ -137,17 +143,17 @@ public class WebGraph {
 				if (i != (incomingLinksCount.length - 1)) {
 					if (incomingLinksCount[i] == incomingLinksCount[i + 1]) {
 						countPages++;
-						logger.info("Count so far:" + countPages);
+						//logger.info("Count so far:" + countPages);
 					} else {
 						countPages++;
-						logger.info("Count so far:" + countPages);
+						//logger.info("Count so far:" + countPages);
 						printWriter.write(incomingLinksCount[i] + " "
 								+ countPages + "\n");
 						countPages = 0;
 					}
 				} else {
 					countPages++;
-					logger.info("Count so far:" + countPages);
+					//logger.info("Count so far:" + countPages);
 					printWriter.write(incomingLinksCount[i] + " " + countPages
 							+ "\n");
 				}
@@ -185,7 +191,9 @@ public class WebGraph {
 	public void buildPagesSet(){
 		logger.info("In build pages set");
 		for (Map.Entry<String, Set<String>> entry : adjacencyList.entrySet()) {
-			int outlinks = calculateOutGoingEdges(entry.getKey());
+			 int outlinks = calculateOutGoingEdges(entry.getKey());
+			//int outlinks = outGoingLinks.get(entry.getKey());
+			logger.info("outlinks for " + entry.getKey() + "is " + outlinks);
 			GraphNode node = new GraphNode();
 			node.setName(entry.getKey());
 			node.setIncomingGraphNodes(entry.getValue());
@@ -228,6 +236,29 @@ public class WebGraph {
 			}
 		}
 		return count;
+	}
+	
+	private void countPagesOccurances(){
+		Scanner input;
+		try {
+			input = new Scanner(new File("Input/WG1.txt"));
+			while (input.hasNext()) {
+	            String next = input.next();
+	            if (!outGoingLinks.containsKey(next)) {
+	            	outGoingLinks.put(next, 0);
+	            } else {
+	            	outGoingLinks.put(next, outGoingLinks.get(next) + 1);
+	            }
+	        }
+			/*for (Map.Entry<String, Integer> entry : outGoingLinks.entrySet()) {
+				logger.info("Page "+entry.getKey()+" has "+entry.getValue()+ " number of outgoing links");
+			}*/
+			logger.info("Outgoing links Size: "+outGoingLinks.size());
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
