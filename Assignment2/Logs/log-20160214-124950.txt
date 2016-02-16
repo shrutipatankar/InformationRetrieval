@@ -1,5 +1,0 @@
-656  [main] INFO  n.i.a.t.k.KendallTauCorelationCoeffecient - Total Number of Possible pairs15
-660  [main] INFO  n.i.a.t.k.KendallTauCorelationCoeffecient - Concordant pairs = 7
-660  [main] INFO  n.i.a.t.k.KendallTauCorelationCoeffecient - Disordant pairs = 8
-660  [main] INFO  n.i.a.t.k.KendallTauCorelationCoeffecient - Total = 15
-662  [main] INFO  n.i.a.t.k.KendallTauCorelationCoeffecient - Tau = -0.06666666666666667

@@ -29,11 +29,11 @@ public class KendallTauCorelationCoeffecient {
 	private int concordantPairs;
 	private int discordantPairs;
 
-	public KendallTauCorelationCoeffecient() {
+	public KendallTauCorelationCoeffecient(String file1,String file2) {
 		concordantPairs = 0;
 		discordantPairs = 0;
-		filename1 = "KendallTauInput/WG2Top50_PageRank.txt";
-		filename2 = "KendallTauInput/WG2Top50_IncomingLinks.txt";
+		filename1 = file1;
+		filename2 = file2;
 		pageRankList = new HashMap<String, Integer>();
 		incomingLinksList = new HashMap<String, Integer>();
 		kendallTauPairs = new ArrayList<KendallTauPair>();
@@ -81,12 +81,12 @@ public class KendallTauCorelationCoeffecient {
 
 	public void calculateKendallTauCorelationCoeffecient() {
 		// load data
-
+		logger.info("Calculating Kendall Tau Corelation Coeffecient for: "+filename1+ " "+filename2);
 		loadPageRankList();
 		loadIncomingLinksList();
 		findCommonSetOfPages();
 		findTotalNumberOfPossiblePairs();
-		logger.info("Total Number of Possible pairs" + kendallTauPairs.size());
+		logger.info("Total Number of Possible pairs: " + kendallTauPairs.size());
 
 		bifercateConcordantDiscordant();
 		logger.info("Concordant pairs = " + concordantPairs);
@@ -104,6 +104,7 @@ public class KendallTauCorelationCoeffecient {
 				commonPages.add(entry.getKey());
 			}
 		}
+		logger.info("size of common pages: "+commonPages.size());
 	}
 
 	private void findTotalNumberOfPossiblePairs() {

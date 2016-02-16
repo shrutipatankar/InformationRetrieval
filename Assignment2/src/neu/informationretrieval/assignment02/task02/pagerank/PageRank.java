@@ -24,18 +24,18 @@ public class PageRank{
 	private double teleportationFactor;
 	private List<Double> perplexityVector;
 
-	public PageRank() {
+	public PageRank(double teleportationFactor) {
 		allPages = new HashMap<String, GraphNode>();
 		sinkNodes = new HashSet<String>();
-		teleportationFactor = 0.85;
+		this.teleportationFactor = teleportationFactor;
 		perplexityVector = new ArrayList<Double>();
 	}
 
-	public PageRank(Map<String, GraphNode> allPages, Set<String> sinkNodes) {
+	public PageRank(Map<String, GraphNode> allPages, Set<String> sinkNodes,double teleportationFactor) {
 		logger.info("Initializing Page Rank Object");
 		this.allPages = allPages;
 		this.sinkNodes = sinkNodes;
-		teleportationFactor = 0.85;
+		this.teleportationFactor =teleportationFactor;
 		perplexityVector = new ArrayList<Double>();
 	}
 
@@ -66,8 +66,8 @@ public class PageRank{
 
 				// Main Page Rank Calulation Loop
 				for (Map.Entry<String, GraphNode> entry : allPages.entrySet()) {
-					logger.info("Calculating Page Rank for Page: "
-							+ entry.getKey());
+					//logger.info("Calculating Page Rank for Page: "
+						//	+ entry.getKey());
 					double newPageRank = (double) (1 - teleportationFactor)
 							/ (double) allPages.size();
 
@@ -81,8 +81,8 @@ public class PageRank{
 								/ (double) allPages.get(incomingLinks)
 										.getNumberOfOutgoingEdges();
 					}
-					logger.info("PageRank after final modification: "
-							+ newPageRank);
+				//	logger.info("PageRank after final modification: "
+					//		+ newPageRank);
 					entry.getValue().setPageRank(newPageRank);
 				}
 			}
@@ -125,10 +125,10 @@ public class PageRank{
 			calculatePerplexity();
 			analytics.info("Perplexity vector for loop number " + loopNumber
 					+ " " + perplexityVector.toString());
-			logger.info(perplexityVector.toString());
+			//logger.info(perplexityVector.toString());
 			for (int i = loopNumber; i > (loopNumber - 4); i--) {
-				logger.info("Perplexity difference for loop i= " + i + " is "
-					+ calculatePerplexityDifference(i));
+				//logger.info("Perplexity difference for loop i= " + i + " is "
+					//+ calculatePerplexityDifference(i));
 
 				converged = converged && (calculatePerplexityDifference(i) < 1);
 			}
@@ -152,13 +152,13 @@ public class PageRank{
 					+ calculateIndividualEntropy(entry.getValue().getPageRank());
 		}
 		entropy = 0.0 - entropy;
-		logger.info("Entropy" + entropy);
+		//logger.info("Entropy" + entropy);
 		return entropy;
 	}
 
 	private double calculateIndividualEntropy(double pageRank) {
-		logger.info("Individual Entropy " + pageRank
-				* (Math.log(pageRank) / Math.log(2)));
+		//logger.info("Individual Entropy " + pageRank
+			//	* (Math.log(pageRank) / Math.log(2)));
 		return (pageRank * (Math.log(pageRank) / Math.log(2)));
 	}
 

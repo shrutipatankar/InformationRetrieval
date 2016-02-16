@@ -1,7 +1,6 @@
 package neu.informationretrieval.assignment02.task02.pagerank;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +13,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -54,10 +52,12 @@ public class WebGraph {
 	private Set<String> sinkNodePages;
 	private Set<String> sourceNodePages;
 	private Map<String, Integer> outGoingLinks; 
+	private double teleportationFactor;
 	 
-	WebGraph(){
+	public WebGraph(String filename, double teleportationFactor){
+		this.teleportationFactor = teleportationFactor;
 		try {
-			fileReader = new FileReader("Input/WG1.txt");
+			fileReader = new FileReader(filename);
 			bufferedReader = new BufferedReader(fileReader);
 			adjacencyList = new HashMap<String, Set<String>>();
 			pages = new HashMap<String,GraphNode>();
@@ -72,14 +72,12 @@ public class WebGraph {
 	
 	public void constructGraph(){
 		buildAdjacencyList();
-		printAdjacencyList();
+		//printAdjacencyList();
 		printIncomingLinksData();
 		countPagesOccurances();
 		buildPagesSet();
-		printAllPages();
-		logger.info("Initializing Page rank");
-		PageRank pageRank = new PageRank(pages,sinkNodePages);
-		logger.info("Calculating Page rank");
+		//printAllPages();
+		PageRank pageRank = new PageRank(pages,sinkNodePages, teleportationFactor);
 		pageRank.calculatePageRank();
 	}
 	
@@ -191,9 +189,8 @@ public class WebGraph {
 	public void buildPagesSet(){
 		logger.info("In build pages set");
 		for (Map.Entry<String, Set<String>> entry : adjacencyList.entrySet()) {
-			 int outlinks = calculateOutGoingEdges(entry.getKey());
-			//int outlinks = outGoingLinks.get(entry.getKey());
-			logger.info("outlinks for " + entry.getKey() + "is " + outlinks);
+			//int outlinks = calculateOutGoingEdges(entry.getKey());
+			int outlinks = outGoingLinks.get(entry.getKey());
 			GraphNode node = new GraphNode();
 			node.setName(entry.getKey());
 			node.setIncomingGraphNodes(entry.getValue());
@@ -202,7 +199,6 @@ public class WebGraph {
 			}
 			node.setNumberOfOutgoingEdges(outlinks);
 			node.setSinkNode((outlinks == 0));
-			logger.info("Adding a graph node for "+ node.getName());
 			if(node.isSinkNode()){
 				sinkNodePages.add(node.getName());
 			}
@@ -210,8 +206,7 @@ public class WebGraph {
 		}
 		logger.info("Done with build pages set");
 		logger.info("Number of source nodes: "+sourceNodePages.size());
-		logger.info("Number of sink nodes: "+sinkNodePages.size());
-		
+		logger.info("Number of sink nodes: "+sinkNodePages.size());	
 	}
 	
 	public void printAllPages(){
@@ -238,27 +233,20 @@ public class WebGraph {
 		return count;
 	}
 	
-	private void countPagesOccurances(){
-		Scanner input;
-		try {
-			input = new Scanner(new File("Input/WG1.txt"));
-			while (input.hasNext()) {
-	            String next = input.next();
-	            if (!outGoingLinks.containsKey(next)) {
-	            	outGoingLinks.put(next, 0);
-	            } else {
-	            	outGoingLinks.put(next, outGoingLinks.get(next) + 1);
-	            }
-	        }
-			/*for (Map.Entry<String, Integer> entry : outGoingLinks.entrySet()) {
-				logger.info("Page "+entry.getKey()+" has "+entry.getValue()+ " number of outgoing links");
-			}*/
-			logger.info("Outgoing links Size: "+outGoingLinks.size());
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	private void countPagesOccurances() {
+		for (Map.Entry<String, Set<String>> entry : adjacencyList.entrySet()) {
+			if(!outGoingLinks.containsKey(entry.getKey())){
+				outGoingLinks.put(entry.getKey(), 0);
+			}
+			for (String temp : entry.getValue()) {
+				if (!outGoingLinks.containsKey(temp)) {
+					outGoingLinks.put(temp, 1);
+				} else {
+					outGoingLinks.put(temp, outGoingLinks.get(temp) + 1);
+				}
+			}
 		}
+		logger.info("Outgoing links Size: " + outGoingLinks.size());
 	}
 
 }
