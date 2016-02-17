@@ -16,28 +16,36 @@ public class KendallTauCorelationCoeffecient {
 
 	final static Logger logger = LoggerFactory
 			.getLogger(KendallTauCorelationCoeffecient.class);
-	private Map<String, Integer> pageRankList;
-	private Map<String, Integer> incomingLinksList;
+	private Map<String, Double> pageRankList;
+	private Map<String, Integer> pageRankOrderList;
+	private Map<String, Double> incomingLinksList;
+	private Map<String, Integer> incomingLinksOrderedList;
 	private List<KendallTauPair> kendallTauPairs;
 	private List<String> commonPages;
 	private BufferedReader bufferedReader1;
 	private BufferedReader bufferedReader2;
 	private FileReader fileReader1;
 	private FileReader fileReader2;
-	String filename1;
-	String filename2;
+	private String filename1;
+	private String filename2;
 	private int concordantPairs;
 	private int discordantPairs;
+	private List<String> disregardList;
+	private int disregardPages;
 
-	public KendallTauCorelationCoeffecient(String file1,String file2) {
+	public KendallTauCorelationCoeffecient(String file1, String file2) {
 		concordantPairs = 0;
 		discordantPairs = 0;
+		disregardPages = 0;
 		filename1 = file1;
 		filename2 = file2;
-		pageRankList = new HashMap<String, Integer>();
-		incomingLinksList = new HashMap<String, Integer>();
+		pageRankList = new HashMap<String, Double>();
+		incomingLinksList = new HashMap<String, Double>();
 		kendallTauPairs = new ArrayList<KendallTauPair>();
 		commonPages = new ArrayList<String>();
+		pageRankOrderList = new HashMap<String, Integer>();
+		incomingLinksOrderedList = new HashMap<String, Integer>();
+		disregardList = new ArrayList<String>();
 		try {
 			fileReader1 = new FileReader(filename1);
 			fileReader2 = new FileReader(filename2);
@@ -54,7 +62,9 @@ public class KendallTauCorelationCoeffecient {
 		int counter = 1;
 		try {
 			while ((line = bufferedReader1.readLine()) != null) {
-				pageRankList.put(line, counter);
+				String split[] = line.split(" ");
+				pageRankList.put(split[0], Double.parseDouble(split[1]));
+				pageRankOrderList.put(split[0], counter);
 				counter++;
 			}
 			bufferedReader1.close();
@@ -69,7 +79,9 @@ public class KendallTauCorelationCoeffecient {
 		int counter = 1;
 		try {
 			while ((line = bufferedReader2.readLine()) != null) {
-				incomingLinksList.put(line, counter);
+				String split[] = line.split(" ");
+				incomingLinksList.put(split[0], Double.parseDouble(split[1]));
+				incomingLinksOrderedList.put(split[0], counter);
 				counter++;
 			}
 			bufferedReader2.close();
@@ -81,12 +93,17 @@ public class KendallTauCorelationCoeffecient {
 
 	public void calculateKendallTauCorelationCoeffecient() {
 		// load data
-		logger.info("Calculating Kendall Tau Corelation Coeffecient for: "+filename1+ " "+filename2);
+		logger.info("Calculating Kendall Tau Corelation Coeffecient for: "
+				+ filename1 + " " + filename2);
 		loadPageRankList();
 		loadIncomingLinksList();
 		findCommonSetOfPages();
 		findTotalNumberOfPossiblePairs();
 		logger.info("Total Number of Possible pairs: " + kendallTauPairs.size());
+		findPagesWithSameRanksOrInLinks(incomingLinksList);
+		//logger.info("Docs having same inlinks count: " + disregardList.size());
+		findPagesWithSameRanksOrInLinks(pageRankList);
+		//logger.info("Docs having same page ranks: " + disregardList.size());
 
 		bifercateConcordantDiscordant();
 		logger.info("Concordant pairs = " + concordantPairs);
@@ -98,13 +115,33 @@ public class KendallTauCorelationCoeffecient {
 
 	}
 
+	private void findPagesWithSameRanksOrInLinks(
+			Map<String, Double> incomingLinksList1) {
+		for (Map.Entry<String, Double> entry : incomingLinksList1.entrySet()) {
+			if (countOccurences(incomingLinksList1, entry.getValue()) > 1) {
+				disregardList.add(entry.getKey());
+			}
+		}
+	}
+
+	private int countOccurences(Map<String, Double> incomingLinksList2,
+			double value) {
+		int count = 0;
+		for (String key : incomingLinksList2.keySet()) {
+			if (incomingLinksList2.get(key) == value) {
+				count++;
+			}
+		}
+		return count;
+	}
+
 	private void findCommonSetOfPages() {
-		for (Map.Entry<String, Integer> entry : pageRankList.entrySet()) {
+		for (Map.Entry<String, Double> entry : pageRankList.entrySet()) {
 			if (incomingLinksList.containsKey(entry.getKey())) {
 				commonPages.add(entry.getKey());
 			}
 		}
-		logger.info("size of common pages: "+commonPages.size());
+		logger.info("size of common pages: " + commonPages.size());
 	}
 
 	private void findTotalNumberOfPossiblePairs() {
@@ -133,30 +170,47 @@ public class KendallTauCorelationCoeffecient {
 	private void bifercateConcordantDiscordant() {
 		for (KendallTauPair kendallTauPair : kendallTauPairs) {
 
-			int page1PageRankOrder = pageRankList
-					.get(kendallTauPair.getPage1());
-			int page2PageRankOrder = pageRankList
-					.get(kendallTauPair.getPage2());
-
-			int page1IncomingLinkOrder = incomingLinksList.get(kendallTauPair
+			int page1PageRankOrder = pageRankOrderList.get(kendallTauPair
 					.getPage1());
-			int page2IncomingLinkOrder = incomingLinksList.get(kendallTauPair
+			int page2PageRankOrder = pageRankOrderList.get(kendallTauPair
 					.getPage2());
 
+			int page1IncomingLinkOrder = incomingLinksOrderedList
+					.get(kendallTauPair.getPage1());
+			int page2IncomingLinkOrder = incomingLinksOrderedList
+					.get(kendallTauPair.getPage2());
+
+	
 			if ((page1PageRankOrder < page2PageRankOrder)
-					&& (page1IncomingLinkOrder < page2IncomingLinkOrder)) {
+					&& (page1IncomingLinkOrder < page2IncomingLinkOrder)
+					&& (!pageRankList.get(kendallTauPair.getPage1()).equals(pageRankList
+							.get(kendallTauPair.getPage2())))
+					&& (!incomingLinksList.get(kendallTauPair.getPage1()).equals(incomingLinksList
+							.get(kendallTauPair.getPage2())))) {
 				concordantPairs = concordantPairs + 1;
 			} else if ((page1PageRankOrder > page2PageRankOrder)
-					&& (page1IncomingLinkOrder > page2IncomingLinkOrder)) {
+					&& (page1IncomingLinkOrder > page2IncomingLinkOrder)
+					&& (!pageRankList.get(kendallTauPair.getPage1())
+							.equals(pageRankList.get(kendallTauPair.getPage2())))
+					&& (!incomingLinksList.get(kendallTauPair.getPage1())
+							.equals(incomingLinksList.get(kendallTauPair
+									.getPage2())))) {
 				concordantPairs = concordantPairs + 1;
-			} else {
+			} else if ((!pageRankList.get(kendallTauPair.getPage1())
+					.equals(pageRankList.get(kendallTauPair.getPage2())))
+					&& (!incomingLinksList.get(kendallTauPair.getPage1())
+							.equals(incomingLinksList.get(kendallTauPair
+									.getPage2())))) {
 				discordantPairs = discordantPairs + 1;
+			} else {
+				disregardPages++;
+				logger.info("DisregardPages Size:" + disregardPages);
 			}
 		}
 	}
 
 	private double caluclateCorelationCoeffecient() {
-		return (((double) concordantPairs - (double) discordantPairs)
-				/ (double) (kendallTauPairs.size()));
+		return (((double) concordantPairs - (double) discordantPairs) / (double) (kendallTauPairs
+				.size()));
 	}
 }

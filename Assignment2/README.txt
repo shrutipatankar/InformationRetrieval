@@ -1,5 +1,10 @@
 INSTRUCTIONS: HOW TO RUN THIS CODE?
 
+[IMPORTANT NOTE]: I HAVE REMOVED SELF LOOPS FOR BOTH THE GRAPHS WG1 AND WG2 ACCORING TO POST @85.
+I HAVE TALKED TO PROFESSOR NADA NAJI ABOUT THIS AND ALSO SENT AN EMAIL REGARDING THE SAME
+
+THIS IS A MAVEN PROJECT WHICH USES A LOGGER. NOTE THAT YOU NEED TO IMPORT IT IN AN IDE
+JAVA 1.7 WILL BE REQUIRED TO RUN THIS CODE.
 --------------------------------------------------------------------------------------------------------------------------
 PROBLEM STATEMENT:
 --------------------------------------------------------------------------------------------------------------------------
@@ -21,8 +26,8 @@ OPEN THE PROJECT IN A IDE (FOR EXAMPLE: ECLIPSE)
 2. OPEN PACKAGE  : neu.informationretrieval.assignment02.task02.pagerank
 3. GO TO CLASS   : TestBuildGraph
 4. CLICK RUN
-5. THE OUTPUT OF THIS PROGRAM IS SAVED IN Output
-6. REPEAT THE ABOVE STEPS BY UNCOMMENTING FILE NAME OF WG2.TXT AND COMMENTING IT FOR WG1.TXT IN TestBuildGraph
+5. THE OUTPUT OF THIS PROGRAM IS SAVED IN FOLDER Output
+6. REPEAT THE ABOVE STEPS BY UNCOMMENTING FILE NAME OF WG2.TXT AND COMMENTING FOR WG1.TXT IN TestBuildGraph
 
 NOTE: THE OUTPUT FOR THIS CODE IS COLLECTED IN TWO PARTS:
 A. GraphPlotData.txt : contains the number of pages that have certain number of incoming links
@@ -31,7 +36,8 @@ C. PagesSortedByIncomingLinks.txt : Each Document ID sorted in descending order 
 D. SortedPageRank.txt : Each document id sorted by page rank 
 
 NOTE: There are also log files generated under Logs folder for each independent run of the program
-
+USER OF THIS PROGRAM CAN CHANGE THE TELEPORTATION FACTOR TO SET IT TO ANY VALUE IN TestBuildGraph
+AND RE-RUN THE CODE AS GIVEN ABOVE
 --------------------------------------------------------------------------------------------------------------------------
 Task 3A:
 
@@ -58,6 +64,6 @@ OPEN THE PROJECT IN A IDE (FOR EXAMPLE: ECLIPSE)
 4. CLICK RUN
 5. THE OUTPUT OF THIS PROGRAM IS SAVED IN Logs
 
-NOTE: THE OUTPUT FOR THIS CODE IS COLLECTEDAS FOLLOWS:
-THE LOG FILE THAT IS CREATED CONTAINS ALL THE RESULTS OF ALL THE EXPECTED TAU VALUES
+NOTE: THE OUTPUT FOR THIS CODE IS COLLECTED AS FOLLOWS:
+THE LOG FILE THAT IS CREATED CONTAINS ALL THE RESULTS OF ALL THE CALCULATED TAU VALUES
 --------------------------------------------------------------------------------------------------------------------------

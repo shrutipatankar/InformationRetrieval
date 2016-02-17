@@ -1,50 +1,50 @@
-International_Standard_Book_Number
-Digital_object_identifier
-Renewable_energy
-Efficient_energy_use
-Biofuel
-United_States
-Wind_power
-Fossil-fuel_phase-out
-Natural_gas
-Biomass
-Integrated_Authority_File
-Energy_conservation
-Carbon_dioxide
-National_Diet_Library
-Nuclear_power
-Wayback_Machine
-Hydroelectricity
-Emissions_trading
-Sustainable_development
-Coal
-Cogeneration
-Solar_power
-Tidal_power
-Sustainable_transport
-Global_warming
-Petroleum
-Sustainability
-Fossil_fuel
-Solar_energy
-Peak_oil
-Carbon_footprint
-PubMed_Identifier
-Greenhouse_gas
-Climate_change
-Human_impact_on_the_environment
-Climate_change_mitigation
-Waste_management
-Microgeneration
-Biodiversity
-European_Union
-Sustainable_architecture
-Biosphere
-Carbon_offset
-Birth_control
-Permaculture
-Wave_power
-Sustainable_design
-Appropriate_technology
-Feed-in_tariff
-Conservation_biology
+International_Standard_Book_Number 460
+Digital_object_identifier 426
+Renewable_energy 414
+Efficient_energy_use 281
+Biofuel 241
+United_States 238
+Wind_power 235
+Fossil-fuel_phase-out 231
+Natural_gas 227
+Biomass 220
+Integrated_Authority_File 215
+Energy_conservation 213
+Carbon_dioxide 204
+National_Diet_Library 196
+Nuclear_power 194
+Wayback_Machine 190
+Hydroelectricity 185
+Emissions_trading 182
+Sustainable_development 180
+Coal 173
+Cogeneration 172
+Solar_power 170
+Tidal_power 166
+Sustainable_transport 165
+Global_warming 163
+Petroleum 163
+Sustainability 162
+Fossil_fuel 162
+Solar_energy 159
+Peak_oil 158
+Carbon_footprint 158
+PubMed_Identifier 157
+Greenhouse_gas 155
+Climate_change 152
+Human_impact_on_the_environment 150
+Climate_change_mitigation 145
+Waste_management 145
+Microgeneration 143
+Biodiversity 143
+European_Union 140
+Sustainable_architecture 139
+Biosphere 138
+Carbon_offset 137
+Birth_control 136
+Permaculture 135
+Wave_power 134
+Sustainable_design 134
+Appropriate_technology 133
+Feed-in_tariff 133
+Conservation_biology 133

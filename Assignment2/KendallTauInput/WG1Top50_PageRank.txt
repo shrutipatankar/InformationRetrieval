@@ -1,50 +1,50 @@
-Digital_object_identifier
-International_Standard_Book_Number
-Integrated_Authority_File
-United_States
-International_Standard_Serial_Number
-Wayback_Machine
-International_Organization_for_Standardization
-Bibcode
-National_Diet_Library
-European_Union
-PubMed_Identifier
-California
-Renewable_energy
-Japan
-Euro
-Efficient_energy_use
-Carbon_dioxide
-France
-Natural_gas
-Italy
-Handle_System
-Wind_power
-Climate_change
-Nuclear_power
-Biofuels
-Hydroelectricity
-Sustainability
-Global_warming
-Biomass
-Brazil
-Greenhouse_gas
-Fossil_fuel
-Coal
-Solar_energy
-Energy_conservation
-Netherlands
-Petroleum
-Spain
-Israel
-Hydrogen
-Emissions_trading
-Sustainable_development
-Cogeneration
-Portugal
-United_States_Department_of_Energy
-United_States_Environmental_Protection_Agency
-JSTOR
-Turkey
-Washington,_D.C.
-Denmark
+Digital_object_identifier 0.03375608378796884
+International_Standard_Book_Number 0.030604202413236335
+Integrated_Authority_File 0.02574258640908448
+United_States 0.014571940906140193
+International_Standard_Serial_Number 0.014117796870021505
+Wayback_Machine 0.012214943800561451
+International_Organization_for_Standardization 0.012060993570217145
+Bibcode 0.010759823044469971
+National_Diet_Library 0.009460571451752834
+European_Union 0.009370406426840732
+PubMed_Identifier 0.008958971908194462
+California 0.008237472566253434
+Renewable_energy 0.007807925255778001
+Japan 0.007579878409231945
+Euro 0.005885040789217891
+Efficient_energy_use 0.004707270530601167
+Carbon_dioxide 0.004609227558026753
+France 0.0044561435858374784
+Natural_gas 0.004439621232017884
+Italy 0.003931534044247762
+Handle_System 0.0038393952909086607
+Wind_power 0.0038017544777020768
+Climate_change 0.0037365234569537997
+Nuclear_power 0.0037062208079783393
+Biofuel 0.0036259511711198944
+Hydroelectricity 0.0036250427918500354
+Sustainability 0.0035215464453961804
+Global_warming 0.003384172240523423
+Biomass 0.0033759096399837976
+Brazil 0.003375723605035465
+Greenhouse_gas 0.0033717024623144054
+Fossil_fuel 0.0032976175037842197
+Coal 0.0031776971353221417
+Solar_energy 0.0031603224406238583
+Energy_conservation 0.003152204694621789
+Netherlands 0.0030977385158852833
+Petroleum 0.003065457051291022
+Spain 0.002999795114848345
+Israel 0.0029026358723469032
+Hydrogen 0.002846627172055014
+Emissions_trading 0.0028448969222852126
+Sustainable_development 0.0028424593703291427
+Cogeneration 0.0027736030937756443
+Portugal 0.002726340867753005
+United_States_Department_of_Energy 0.0027066886320864965
+United_States_Environmental_Protection_Agency 0.0026900807034358396
+JSTOR 0.0026872880926315673
+Turkey 0.002603838012381995
+Washington,_D.C. 0.0025704319335061606
+Denmark 0.0025572611310796765

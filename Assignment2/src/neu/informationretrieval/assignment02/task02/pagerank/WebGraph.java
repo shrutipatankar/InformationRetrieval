@@ -82,22 +82,26 @@ public class WebGraph {
 	}
 	
 	
-	public void buildAdjacencyList(){
+	public void buildAdjacencyList() {
 		String line;
 		try {
-			while((line = bufferedReader.readLine()) != null) {
+			while ((line = bufferedReader.readLine()) != null) {
 				String split[] = line.split("\\s+");
 				Set<String> incoming = new HashSet<String>();
-				for(int i=1; i< split.length;i++){
-					incoming.add(split[i]);
+				for (int i = 1; i < split.length; i++) {
+					if (!split[i].equals(split[0])) {
+						incoming.add(split[i]);
+					} else {
+						logger.info("Cleaned graph at:" + split[0]);
+					}
 				}
-				adjacencyList.put(split[0],incoming);
+				adjacencyList.put(split[0], incoming);
 			}
-			bufferedReader.close();    
+			bufferedReader.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}                
+		}
 	}
 	
 	private void printIncomingLinksData() {
@@ -187,9 +191,7 @@ public class WebGraph {
 	}
 	
 	public void buildPagesSet(){
-		logger.info("In build pages set");
 		for (Map.Entry<String, Set<String>> entry : adjacencyList.entrySet()) {
-			//int outlinks = calculateOutGoingEdges(entry.getKey());
 			int outlinks = outGoingLinks.get(entry.getKey());
 			GraphNode node = new GraphNode();
 			node.setName(entry.getKey());
@@ -218,19 +220,6 @@ public class WebGraph {
 			logger.info("Is this a sink node? " + entry.getValue().isSinkNode());
 			logger.info("--------------------------------------------------");
 		}
-	}
-	
-	public int calculateOutGoingEdges(String key){
-		int count=0;
-		for (Map.Entry<String, Set<String>> entry : adjacencyList.entrySet()) {
-			Set<String> inlinks = entry.getValue();
-			for(String page : inlinks){
-				if(page.equals(key)){
-					count = count + 1;
-				}
-			}
-		}
-		return count;
 	}
 	
 	private void countPagesOccurances() {

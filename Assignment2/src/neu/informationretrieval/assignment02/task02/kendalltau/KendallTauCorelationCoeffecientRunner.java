@@ -5,16 +5,16 @@ public class KendallTauCorelationCoeffecientRunner {
 	public static void main(String args[]) {
 
 		// Top 50 by incoming links and top 50 by page rank of WG1
-		String file1 = "KendallTauInput/WG1Top50_IncomingLinks.txt";
-		String file2 = "KendallTauInput/WG1Top50_PageRank.txt";
+		String file1 = "KendallTauInput/WG1Top50_PageRank.txt";
+		String file2 = "KendallTauInput/WG1Top50_IncomingLinks.txt";
 		KendallTauCorelationCoeffecient kendallTauCorelationCoeffecient = new KendallTauCorelationCoeffecient(
 				file1, file2);
 		kendallTauCorelationCoeffecient
 				.calculateKendallTauCorelationCoeffecient();
 
 		// Top 50 by incoming links and top 50 by page rank of WG2
-		file1 = "KendallTauInput/WG2Top50_IncomingLinks.txt";
-		file2 = "KendallTauInput/WG2Top50_PageRank.txt";
+		file1 = "KendallTauInput/WG2Top50_PageRank.txt";
+		file2 = "KendallTauInput/WG2Top50_IncomingLinks.txt";
 		KendallTauCorelationCoeffecient kendallTauCorelationCoeffecient1 = new KendallTauCorelationCoeffecient(
 				file1, file2);
 		kendallTauCorelationCoeffecient1
@@ -54,6 +54,6 @@ public class KendallTauCorelationCoeffecientRunner {
 		KendallTauCorelationCoeffecient kendallTauCorelationCoeffecient5 = new KendallTauCorelationCoeffecient(
 				file1, file2);
 		kendallTauCorelationCoeffecient5
-				.calculateKendallTauCorelationCoeffecient();
+				.calculateKendallTauCorelationCoeffecient(); 
 	}
 }
