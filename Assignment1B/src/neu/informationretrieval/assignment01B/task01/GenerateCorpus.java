@@ -60,8 +60,6 @@ public class GenerateCorpus {
 				parseTextFromFile(corpusFolderPath + "/" + file.getName());
 			}
 		}
-		// extractTitleandText(corpusFolderPath +
-		// "/100%25_renewable_energy.txt");
 	}
 
 	/**
@@ -94,6 +92,7 @@ public class GenerateCorpus {
 			// replace colons with white spaces
 			text = text.replaceAll(":", " ");
 			text = text.replaceAll("/", " ");
+			text = text.replaceAll(" ", " ");
 
 			// remove punctuation
 			text = removePunctuation(text);
@@ -101,6 +100,10 @@ public class GenerateCorpus {
 			System.out.println("Writing raw data to files..");
 
 			File output = new File(outputFolderPath + "/" + title + ".txt");
+			if(output.exists()){
+				title = title + "_copy";
+				output = new File(outputFolderPath + "/" + title + ".txt");
+			}
 			PrintWriter writer = new PrintWriter(output, "UTF-8");
 			writer.println(text);
 			writer.close();
@@ -172,9 +175,9 @@ public class GenerateCorpus {
 				}
 			}
 		}
-		System.out.println("String conversion of "
+		/*System.out.println("String conversion of "
 				+ String.copyValueOf(charArray) + " to "
-				+ String.valueOf(tempArray));
+				+ String.valueOf(tempArray));*/
 		return String.valueOf(tempArray);
 	}
 
@@ -207,7 +210,10 @@ public class GenerateCorpus {
 	 * 23. ')'
 	 */
 	public String getRawToken(String token) {
-		return token.replaceAll("[.,\\/#!$%\\^&\\*\";:{}=_`~()\']", "");
+		if(token.length() == 1 && (token == "-" || token == "-")){
+			return "";
+		}
+		return token.replaceAll("[.,\\/#!$%\\^&\\*\"“”;:{}=_`~()\'’?<>‘]", "");
 	}
 
 	/**
