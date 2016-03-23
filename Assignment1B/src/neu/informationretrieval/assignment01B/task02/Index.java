@@ -14,19 +14,19 @@ package neu.informationretrieval.assignment01B.task02;
 
 public class Index {
 
-	private String docId;
+	private int docId;
 	private int termFrequency;
 
 	Index(){
-		docId = "temp";
+		docId = 0;
 		termFrequency = 0;
 	}
 	
-	public String getDocId() {
+	public int getDocId() {
 		return docId;
 	}
 
-	public void setDocId(String docId) {
+	public void setDocId(int docId) {
 		this.docId = docId;
 	}
 

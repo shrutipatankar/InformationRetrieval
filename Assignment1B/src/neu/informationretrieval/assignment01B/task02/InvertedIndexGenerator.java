@@ -39,14 +39,12 @@ public class InvertedIndexGenerator {
 	
 	
 	private Map<String, Integer> wordOccurances;
-	private Map<String, Integer> numberOfOneGramTokensPerDocument;
-	private Map<String, Integer> numberOfBiGramTokensPerDocument;
-	private Map<String, Integer> numberOfTriGramTokensPerDocument;
+	private Map<Integer, Integer> numberOfOneGramTokensPerDocument;
+	private Map<Integer, Integer> numberOfBiGramTokensPerDocument;
+	private Map<Integer, Integer> numberOfTriGramTokensPerDocument;
 	
 	private Map<String, Integer> docIDHashcode;
-	
 	private File corpusFolderPath;
-	
 	private String resultPath;
 
 	public InvertedIndexGenerator() {
@@ -59,9 +57,9 @@ public class InvertedIndexGenerator {
 		termFrequencyTriGram = new HashMap<String, Integer>();
 		
 		
-		numberOfOneGramTokensPerDocument = new HashMap<String, Integer>();
-		numberOfBiGramTokensPerDocument = new HashMap<String, Integer>();
-		numberOfTriGramTokensPerDocument = new HashMap<String, Integer>();
+		numberOfOneGramTokensPerDocument = new HashMap<Integer, Integer>();
+		numberOfBiGramTokensPerDocument = new HashMap<Integer, Integer>();
+		numberOfTriGramTokensPerDocument = new HashMap<Integer, Integer>();
 		
 		docIDHashcode = new HashMap<String, Integer>();
 		
@@ -82,6 +80,22 @@ public class InvertedIndexGenerator {
 		}
 		writeHashMap();
 		generateStatistics();
+		writeHashCodeOfFiles();
+	}
+	
+	private void writeHashCodeOfFiles(){
+		PrintWriter writer;
+		File file = new File(resultPath + "hashCodeToDocIds.txt");
+		try {
+			writer = new PrintWriter(file, "UTF-8");
+			for (Map.Entry<String, Integer> entry : docIDHashcode.entrySet()) {
+				String docEntry = entry.getKey() + " " + entry.getValue();
+				writer.println(docEntry);
+			}
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void generateStatistics(){
@@ -217,25 +231,29 @@ public class InvertedIndexGenerator {
 	}
 
 	private void populateHashMap(String docID, String text) {
+		
+		int hashCodeDocId = docID.hashCode();
+		docIDHashcode.put(docID, hashCodeDocId);
+		
 		// Populate One Gram Hash Map
 		String oneGrams[] = createNGrams(1, text);
-		numberOfOneGramTokensPerDocument.put(docID, oneGrams.length);
+		numberOfOneGramTokensPerDocument.put(hashCodeDocId, oneGrams.length);
 		countWordOccurances(oneGrams);
-		populateOneGramHashMap(docID);
+		populateOneGramHashMap(hashCodeDocId);
 		
 		String biGrams[] = createNGrams(2, text);
-		numberOfBiGramTokensPerDocument.put(docID, biGrams.length);
+		numberOfBiGramTokensPerDocument.put(hashCodeDocId, biGrams.length);
 		countWordOccurances(biGrams);
-		populateBiGramHashMap(docID);
+		populateBiGramHashMap(hashCodeDocId);
 		
 		String triGrams[] = createNGrams(3, text);
-		numberOfTriGramTokensPerDocument.put(docID, triGrams.length);
+		numberOfTriGramTokensPerDocument.put(hashCodeDocId, triGrams.length);
 		countWordOccurances(triGrams);
-		populateTriGramHashMap(docID);
+		populateTriGramHashMap(hashCodeDocId);
 
 	}
 	
-	private void populateTriGramHashMap(String docID){
+	private void populateTriGramHashMap(int docID){
 		for (Map.Entry<String, Integer> entry : wordOccurances.entrySet()) {
 			Index tempIndex = new Index();
 			tempIndex.setDocId(docID);
@@ -253,7 +271,7 @@ public class InvertedIndexGenerator {
 		}
 	}
 	
-	private void populateBiGramHashMap(String docID){
+	private void populateBiGramHashMap(int docID){
 		for (Map.Entry<String, Integer> entry : wordOccurances.entrySet()) {
 			Index tempIndex = new Index();
 			tempIndex.setDocId(docID);
@@ -300,7 +318,7 @@ public class InvertedIndexGenerator {
 		return words;
 	}
 
-	private void populateOneGramHashMap(String docID) {
+	private void populateOneGramHashMap(int docID) {
 		for (Map.Entry<String, Integer> entry : wordOccurances.entrySet()) {
 			Index tempIndex = new Index();
 			tempIndex.setDocId(docID);

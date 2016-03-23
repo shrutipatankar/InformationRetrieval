@@ -3,6 +3,12 @@ package neu.informationretrieval.assignment01B.executor;
 import neu.informationretrieval.assignment01B.task01.GenerateCorpusRunner;
 import neu.informationretrieval.assignment01B.task02.InvertedIndexGeneratorRunner;
 
+/**
+ * 
+ * @author shruti
+ *
+ */
+
 public class InvertedIndexCreatorRunner {
 
 	public static void main(String[] args) {
@@ -13,7 +19,7 @@ public class InvertedIndexCreatorRunner {
 		InvertedIndexGeneratorRunner.main(noArgs);
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;
-		System.out.println(totalTime);
+		System.out.println("Total time in milliseconds: " + totalTime);
 	}
 
 }

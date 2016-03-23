@@ -217,7 +217,6 @@ public class GenerateCorpus {
 		if (token.length() > 0) {
 			if (token.length() == 1){
 				if(token.contains("-") || token.contains("–")){
-					System.out.println("replacing hiphen with a whitespace");
 					return " ";
 				}
 			}else if (token.length() == 2) {
