@@ -93,6 +93,7 @@ public class GenerateCorpus {
 			text = text.replaceAll(":", " ");
 			text = text.replaceAll("/", " ");
 			text = text.replaceAll(" ", " ");
+			
 
 			// remove punctuation
 			text = removePunctuation(text);
@@ -100,13 +101,14 @@ public class GenerateCorpus {
 			System.out.println("Writing raw data to files..");
 
 			File output = new File(outputFolderPath + "/" + title + ".txt");
-			if(output.exists()){
-				title = title + "_copy";
-				output = new File(outputFolderPath + "/" + title + ".txt");
+			if(!output.exists()){
+				PrintWriter writer = new PrintWriter(output, "UTF-8");
+				writer.println(text);
+				writer.close();
+			}else{
+				System.out.println("found duplicate file for " + output);
 			}
-			PrintWriter writer = new PrintWriter(output, "UTF-8");
-			writer.println(text);
-			writer.close();
+		
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -153,6 +155,7 @@ public class GenerateCorpus {
 	 * is retained
 	 */
 	public String getProcessedNumericToken(String token) {
+		
 		char[] charArray = token.toCharArray();
 		char tempArray[] = new char[charArray.length];
 		int count = 0;
@@ -172,7 +175,7 @@ public class GenerateCorpus {
 				if (charArray[i] == '%' || charArray[i] == '$') {
 					tempArray[count] = charArray[i];
 					count++;
-				}
+				} 
 			}
 		}
 		/*System.out.println("String conversion of "
@@ -210,10 +213,31 @@ public class GenerateCorpus {
 	 * 23. ')'
 	 */
 	public String getRawToken(String token) {
-		if(token.length() == 1 && (token == "-" || token == "-")){
-			return "";
+		token = token.trim();
+		if (token.length() > 0) {
+			if (token.length() == 1){
+				if(token.contains("-") || token.contains("–")){
+					System.out.println("replacing hiphen with a whitespace");
+					return " ";
+				}
+			}else if (token.length() == 2) {
+				if ((token.charAt(0) == '-' || token.charAt(0) == '–')) {
+					token = String.valueOf(token.charAt(1));
+				}else if((token.charAt(token.length() - 1) == '-'
+						|| token.charAt(token.length() - 1) == '–')){
+					token = String.valueOf(token.charAt(0));
+				}
+			} else{
+				if(token.charAt(0) == '-' || token.charAt(0) == '–') {
+					token = token.substring(1, token.length() - 1);
+				} else if (token.charAt(token.length() - 1) == '-'
+						|| token.charAt(token.length() - 1) == '–') {
+					token = token.substring(0, token.length() - 2);
+				}
+			}
 		}
-		return token.replaceAll("[.,\\/#!$%\\^&\\*\"“”;:{}=_`~()\'’?<>‘]", "");
+		
+		return token.replaceAll("[.,\\/#!$%\\^&\\*\"“”;:{}=_`~()\'’?ˈ<>‘@]", "");
 	}
 
 	/**
