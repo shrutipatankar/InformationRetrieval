@@ -214,12 +214,8 @@ public class GenerateCorpus {
 	 */
 	public String getRawToken(String token) {
 		token = token.trim();
-		if (token.length() > 0) {
-			if (token.length() == 1){
-				if(token.contains("-") || token.contains("–")){
-					return " ";
-				}
-			}else if (token.length() == 2) {
+		if (token.length() > 1) {
+			if (token.length() == 2) {
 				if ((token.charAt(0) == '-' || token.charAt(0) == '–')) {
 					token = String.valueOf(token.charAt(1));
 				}else if((token.charAt(token.length() - 1) == '-'

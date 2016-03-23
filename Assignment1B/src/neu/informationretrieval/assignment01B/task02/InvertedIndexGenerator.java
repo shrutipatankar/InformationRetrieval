@@ -8,13 +8,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 
@@ -46,6 +49,9 @@ public class InvertedIndexGenerator {
 	private Map<String, Integer> docIDHashcode;
 	private File corpusFolderPath;
 	private String resultPath;
+	
+	private Set<String> stopList;
+	private Set<String> standardStopWordList_25;
 
 	public InvertedIndexGenerator() {
 		invertedIndexOneGram = new HashMap<String, List<Index>>();
@@ -60,15 +66,45 @@ public class InvertedIndexGenerator {
 		numberOfOneGramTokensPerDocument = new HashMap<Integer, Integer>();
 		numberOfBiGramTokensPerDocument = new HashMap<Integer, Integer>();
 		numberOfTriGramTokensPerDocument = new HashMap<Integer, Integer>();
-		
+
 		docIDHashcode = new HashMap<String, Integer>();
-		
+
 		corpusFolderPath = new File("OutputRawFiles");
 		wordOccurances = new HashMap<String, Integer>();
+
+		//  Reuters-RCV1 top 25 common words
+		standardStopWordList_25 = new HashSet<String>(Arrays.asList("a", "an",
+				"and", "are", "as", "at", "be", "by", "for", "from" + "has",
+				"he", "in", "is", "it", "its", "of", "on", "that", "the", "to",
+				"was", "were", "will", "with"));
 		
+		stopList = new HashSet<String>();
+
 		resultPath = "Results/";
 	}
 
+	public void generateCorpusStopList(){
+		for (Map.Entry<String, Integer> entry : termFrequencyOneGram.entrySet()) {
+			if(standardStopWordList_25.contains(entry.getKey())){
+				stopList.add(entry.getKey());
+			}else{
+				break;
+			}
+		}
+		//Write to file
+		PrintWriter writer;
+		File file = new File(resultPath + "StopWordList.txt");
+		try {
+			writer = new PrintWriter(file, "UTF-8");
+			for (String term : stopList) {
+				writer.println(term);
+			}
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void generateInvertedIndex() {
 		File[] listOfFiles = corpusFolderPath.listFiles();
 		for (File file : listOfFiles) {
@@ -138,15 +174,15 @@ public class InvertedIndexGenerator {
 
 	private void writeTermFreqToFile() {
 		
-		writeHashMapToFile(resultPath + "termFrequencyOneGram.txt", termFrequencyOneGram);
-		writeHashMapToFile(resultPath + "termFrequencyBiGram.txt", termFrequencyBiGram);
-		writeHashMapToFile(resultPath + "termFrequencyTriGram.txt", termFrequencyTriGram);
+		writeHashMapToFile("termFrequencyOneGram.txt", termFrequencyOneGram);
+		writeHashMapToFile("termFrequencyBiGram.txt", termFrequencyBiGram);
+		writeHashMapToFile("termFrequencyTriGram.txt", termFrequencyTriGram);
 	}
 	
 	
 	private void writeHashMapToFile(String filename, Map<String, Integer> hashMap){
 		PrintWriter writer;
-		File file = new File(filename);
+		File file = new File(resultPath+filename);
 		try {
 			writer = new PrintWriter(file, "UTF-8");
 			for (Map.Entry<String, Integer> entry : hashMap
@@ -158,6 +194,23 @@ public class InvertedIndexGenerator {
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		
+	    
+		File rankFile = new File("FreqAgainstRank_"+filename);
+		try {
+			writer = new PrintWriter(rankFile, "UTF-8");
+			int count = 1;
+			for (Map.Entry<String, Integer> entry : hashMap
+					.entrySet()) {
+				String rankTerm = entry.getValue() + " " + count;
+				writer.println(rankTerm);
+				count++;
+			}
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	private void calculateTermFreqTable() {

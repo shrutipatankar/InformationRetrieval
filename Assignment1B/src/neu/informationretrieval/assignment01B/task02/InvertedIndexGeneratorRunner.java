@@ -10,6 +10,7 @@ public class InvertedIndexGeneratorRunner {
 	public static void main(String[] args) {
 		InvertedIndexGenerator indexGenerator = new InvertedIndexGenerator();
 		indexGenerator.generateInvertedIndex();
+		indexGenerator.generateCorpusStopList();
 	}
 
 }
