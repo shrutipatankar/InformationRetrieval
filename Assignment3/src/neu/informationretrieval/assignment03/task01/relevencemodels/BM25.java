@@ -63,13 +63,12 @@ public class BM25 {
 		query = query.trim();
 		query = query.replaceAll("\\s+", " ");
 		
-		
 		String queryWords[] = query.split(" ");
 		int queryNumber = Integer.parseInt(queryWords[0]);
 		
 		queryWords = filterQueryWords(queryWords);
-		
 		calculateQueryFrequency(queryWords);
+		
 		for (int i = 0; i < queryWords.length; i++) {
 			calculateBM25ScorePerTerm(queryWords[i]);
 		}
@@ -90,6 +89,7 @@ public class BM25 {
 	}
 
 	private void calculateBM25ScorePerTerm(String term) {
+		logger.info("Processing term "+term);
 		List<Index> termInvertedIndex = new ArrayList<Index>();
 		termInvertedIndex = invertedIndex.get(term);
 		int ni = termInvertedIndex.size();
@@ -136,7 +136,7 @@ public class BM25 {
 		double term3 = (double) (((k2 + 1) * qfi) / (k2 + qfi));
 		logger.info("term3 = " + term3);
 		logger.info("Multiplication = " + (term1 * term2 * term3));
-		double score = Math.log((term1 * term2 * term3));
+		double score = (Math.log(term1)) * term2 * term3;
 		logger.info("Score = " + score);
 		return score;
 	}
@@ -164,7 +164,7 @@ public class BM25 {
 	private void printbm25Scores(int queryNum, String queryWords[]) {
 		// Write to file
 		PrintWriter writer;
-		File file = new File(createOutputFileName(queryWords));
+		File file = new File("BM25Output/" + createOutputFileName(queryWords));
 		try {
 			writer = new PrintWriter(file, "UTF-8");
 			int count = 0;
@@ -213,7 +213,8 @@ public class BM25 {
 
 		AVDL = ((double) countOfAllTokensInAllDocuments)
 				/ ((double) numOfTokensPerDoc.size());
-		// System.out.println("AVDL = " + AVDL);
+		
+		logger.info("AVDL = " + AVDL);
 	}
 
 	private void readAllFilesInHashMaps() {
